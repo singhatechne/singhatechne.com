@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singha Techne - Enabling the Smart Society</title>
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://placehold.co/32x32/00AEEF/FFFFFF?text=ST">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"> 
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
@@ -24,7 +19,7 @@
                         orbitron: ['Orbitron', 'sans-serif'],
                     },
                     colors: {
-                        // New color palette
+
                         'background': '#1A1C20',
                         'primary-text': '#FFFFFF',
                         'secondary-text': '#8D8E91',
@@ -45,23 +40,23 @@
     </script>
     
     <style>
-        /* Custom styles for matching specific design elements */
+
         body {
-            background-color: #1A1C20; /* Background */
-            color: #E6E6E6; /* Primary Text */
+            background-color: #1A1C20; 
+            color: #E6E6E6; 
         }
         
-        /* Hero section gradient */
+       
         .hero-gradient {
             background: linear-gradient(145deg, #1A1C20, #22242A, #31343A);
         }
         
-        /* Accent blue gradient */
+      
         .accent-gradient {
             background: linear-gradient(135deg, #1F4758, #00AEEF);
         }
         
-        /* Button/highlight gradient */
+        
         .button-gradient {
             background: linear-gradient(90deg, #00AEEF, #1F4758);
         }
@@ -78,16 +73,15 @@
 
 
 
-        /* For larger screens - adjust video size */
         @media (min-aspect-ratio: 16/9) {
             .video-container iframe {
-                height: 56.25vw; /* 100/56.25 = 560/315 = 16/9 */
+                height: 56.25vw; 
             }
         }
 
         @media (max-aspect-ratio: 16/9) {
             .video-container iframe {
-                width: 177.78vh; /* 100/56.25 = 560/315 = 16/9 */
+                width: 177.78vh; 
             }
         }
 
@@ -98,22 +92,20 @@
             transition: all 0.3s ease-in-out;
         }
 
-        /* Custom glow for elements */
+
         .element-glow {
             box-shadow: 0 0 10px 5px rgba(0, 174, 239, 0.3);
         }
 
-        /* Fix Lucide icons color in dark mode */
+     
         [data-lucide] {
             color: currentColor;
         }
 
-        /* Fullscreen service modal for "engulfing" effect */
         #service-detail-modal {
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        /* Auto-scrolling partners section */
         .partners-scroll {
             animation: scroll 30s linear infinite;
         }
@@ -244,12 +236,10 @@
             padding: 0;
         }
         
-        /* Card expansion animation */
         .expanding-card {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Modal image styles */
         .modal-image {
             width: 100%;
             height: 250px;
@@ -262,7 +252,6 @@
             padding: 30px;
         }
         
-        /* Dark theme service cards */
         .service-card-dark {
             border: 1px solid #31343A;
             transition: all 0.3s ease;
@@ -280,12 +269,12 @@
         @media (max-width: 1023px) {
             .horizontal-scroll-container {
                 overflow-x: auto;
-                scrollbar-width: none; /* Firefox */
-                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;
+                -ms-overflow-style: none; 
             }
             
             .horizontal-scroll-container::-webkit-scrollbar {
-                display: none; /* Chrome, Safari and Opera */
+                display: none; 
             }
             
             .horizontal-scroll-content {
@@ -308,7 +297,7 @@
             }
         }
         
-        /* About section image covering entire section */
+   
         #about {
             position: relative;
             overflow: hidden;
@@ -400,7 +389,6 @@
             border-top-right-radius: 12px;
         }
         
-        /* Custom dropdown for service selection */
         .custom-select {
             position: relative;
         }
@@ -516,10 +504,8 @@
         </a>
     </div>
 
-    <!-- Updated Header with Logo on Left and Navigation Centered -->
     <header class="absolute top-0 left-0 right-0 z-40">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center text-sm font-medium">
-            <!-- Logo on Left -->
             <div class="flex items-center mb-4 md:mb-0">
                     <img src="Singha Techne Side Logo1.png" alt="Singha Techne Logo" class="h-16 w-auto mr-3 rounded-[10px]">
                 </div>
@@ -555,20 +541,19 @@
 
     <main>
         
-        <!-- UPDATED HERO SECTION WITH FIXED VIDEO -->
+ 
         <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden hero-gradient section-dark">
             
-            <!-- Replace the entire video-container div with this -->
             <div class="video-container">
-    <!-- YouTube Embed - FIXED URL -->
-    <iframe 
-        src="https://www.youtube.com/embed/Hgg7M3kSqyE?autoplay=1&mute=1&loop=1&playlist=Hgg7M3kSqyE&controls=0&showinfo=0&rel=0&modestbranding=1&mute=1&playsinline=1" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media; accelerometer; gyroscope" 
-        allowfullscreen
-        class="w-full h-full object-cover"
-        id="youtube-video">
-    </iframe>
+
+                <iframe 
+                    src="https://www.youtube.com/embed/Hgg7M3kSqyE?autoplay=1&mute=1&loop=1&playlist=Hgg7M3kSqyE&controls=0&showinfo=0&rel=0&modestbranding=1&mute=1&playsinline=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media; accelerometer; gyroscope" 
+                    allowfullscreen
+                    class="w-full h-full object-cover"
+                    id="youtube-video">
+                </iframe>
     
     <!-- Fallback background in case video fails -->
     <div id="video-fallback" class="video-fallback hidden">
@@ -849,7 +834,7 @@
             <br>
             <div class="container mx-auto px-4 max-w-8xl">
                 <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
-                    <!-- Left: Cards - Now taking 2/3 of the space -->
+                    <!-- Left: Cards -taking 2/3 of the space -->
                     <div class="lg:col-span-2 slide-from-left">
                         <h2 class="text-3xl font-bold mb-6 text-primary-accent">Web Development & Hosting</h2>
                         
@@ -895,7 +880,7 @@
                         </div>
                     </div>
                     
-                    <!-- Right: Image - Now taking 1/3 of the space -->
+                    <!-- Right: Image - taking 1/3 of the space -->
                     <div class="flex justify-center lg:justify-end slide-from-right">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
                              alt="Web development illustration showing code and design elements" class="w-full h-auto rounded-lg shadow-xl">
@@ -909,14 +894,14 @@
         <section class="py-16 md:py-24 section-light border-t border-borders">
             <div class="container mx-auto px-4 max-w-8xl">
                 <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
-                    <!-- Left: Image - Now taking 1/3 of the space -->
+                    <!-- Left: Image - taking 1/3 of the space -->
                     <div class="flex justify-center lg:justify-start slide-from-left">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
                              alt="Digital marketing illustration showing analytics and data visualization"  
                             class="w-full h-auto rounded-lg shadow-xl">
                     </div>
                     
-                    <!-- Right: Cards - Now taking 2/3 of the space -->
+                    <!-- Right: Cards - 2/3 of the space -->
                     <div class="lg:col-span-2 slide-from-right">
                         <h2 class="text-3xl font-bold mb-6 text-primary-accent">Our Marketing Solutions</h2>
                         
@@ -969,7 +954,7 @@
         <section class="py-16 md:py-24 section-dark border-t border-borders">
             <div class="container mx-auto px-4 max-w-8xl">
                 <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
-                    <!-- Left: Cards - Now taking 2/3 of the space -->
+                    <!-- Left: Cards -taking 2/3 of the space -->
                     <div class="lg:col-span-2 slide-from-left">
                         <h2 class="text-3xl font-bold mb-6 text-primary-accent">Digital Marketing Services</h2>
                         
@@ -1015,7 +1000,7 @@
                         </div>
                     </div>
                     
-                    <!-- Right: Image - Now taking 1/3 of the space -->
+                    <!-- Right: Image - taking 1/3 of the space -->
                     <div class="flex justify-center lg:justify-end slide-from-right">
                         <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
                              alt="Digital marketing illustration showing analytics and growth metrics" 
@@ -1029,14 +1014,14 @@
         <section class="py-16 md:py-24 section-light border-t border-borders">
             <div class="container mx-auto px-4 max-w-8xl">
                 <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
-                    <!-- Left: Image - Now taking 1/3 of the space -->
+                    <!-- Left: Image - taking 1/3 of the space -->
                     <div class="flex justify-center lg:justify-start slide-from-left">
                         <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
                              alt="Software development illustration showing code and programming" 
                             class="w-full h-auto rounded-lg shadow-xl">
                     </div>
                     
-                    <!-- Right: Cards - Now taking 2/3 of the space -->
+                    <!-- Right: Cards - taking 2/3 of the space -->
                     <div class="lg:col-span-2 slide-from-right">
                         <h2 class="text-3xl font-bold mb-6 text-primary-accent">Development Services</h2>
                         
@@ -1113,7 +1098,7 @@
             </div>
         </section>
 
-        <!-- Partners Section - Moved below About -->
+        <!-- Partners Section -->
         <section id="partners" class="py-16 md:py-24 section-light border-t border-borders">
             <div class="container mx-auto px-4 text-center">
                 <h3 class="text-xl uppercase tracking-widest text-secondary-text mb-4">Strategic Technology Alliances</h3>
@@ -1325,7 +1310,7 @@
             });
 
 
-            // --- 2. Service Card Expansion Logic - FIXED ---
+            // --- 2. Service Card Expansion Logic
             const serviceCards = document.querySelectorAll('.service-card');
             const serviceModal = document.getElementById('service-detail-modal');
             const serviceTitle = document.getElementById('modal-service-title');
