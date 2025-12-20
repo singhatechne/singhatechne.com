@@ -172,26 +172,25 @@
             background: linear-gradient(90deg, #00AEEF, #1F4758);
         }
         
-        .video-container iframe {
+        /* Updated video container styles */
+        .video-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        #hero-video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
             pointer-events: none;
-        }
-
-        @media (min-aspect-ratio: 16/9) {
-            .video-container iframe {
-                height: 56.25vw; 
-            }
-        }
-
-        @media (max-aspect-ratio: 16/9) {
-            .video-container iframe {
-                width: 177.78vh; 
-            }
         }
 
         /* Vertical tab text */
@@ -635,14 +634,25 @@
             z-index: 2;
         }
         
-        /* Hide YouTube branding and title */
-        .video-container iframe {
-            background: #000;
+        /* Fixed video positioning */
+        .fixed-video {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        /* Ensure video covers the entire area without showing titles */
-        .youtube-player {
-            pointer-events: none;
+        /* Video overlay for better text readability */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
         }
     </style>
 </head>
@@ -743,17 +753,14 @@
         <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden hero-gradient section-dark">
             
             <div class="video-container">
-                <!-- Updated YouTube embed URL with parameters to hide title and branding -->
-                <iframe 
-                    src="https://www.youtube.com/embed/Hgg7M3kSqyE?autoplay=1&mute=1&loop=1&playlist=Hgg7M3kSqyE&controls=0&showinfo=0&rel=0&modestbranding=1&mute=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0" 
-                    frameborder="0" 
-                    allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    class="w-full h-full object-cover youtube-player"
-                    id="youtube-video"
-                    title="Background Video"
-                    style="background: #000;">
-                </iframe>
+                <!-- Local Video -->
+                <video id="hero-video" autoplay muted loop playsinline>
+                    <source src="SinghaTechneVid.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- Video overlay for better text readability -->
+                <div class="video-overlay"></div>
     
                 <!-- Fallback background in case video fails -->
                 <div id="video-fallback" class="video-fallback hidden">
@@ -1500,6 +1507,27 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Lucide Icons
             lucide.createIcons();
+
+            // --- Video Fix: Ensure video stays fixed and covers properly ---
+            const heroVideo = document.getElementById('hero-video');
+            
+            // Force video to cover the entire area without moving
+            if (heroVideo) {
+                heroVideo.style.position = 'absolute';
+                heroVideo.style.top = '0';
+                heroVideo.style.left = '0';
+                heroVideo.style.width = '100%';
+                heroVideo.style.height = '100%';
+                heroVideo.style.objectFit = 'cover';
+                heroVideo.style.objectPosition = 'center';
+                
+                // Ensure video plays correctly
+                heroVideo.play().catch(e => {
+                    console.log('Video autoplay prevented:', e);
+                    // Show fallback if video fails
+                    document.getElementById('video-fallback').classList.remove('hidden');
+                });
+            }
 
             // --- 1. Mobile Menu Toggle Logic ---
             const menuToggle = document.getElementById('mobile-menu-toggle');
