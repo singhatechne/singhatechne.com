@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singha Techne - Enabling the Smart Society</title>
+    <link rel="icon" type="image/x-icon" href="https://placehold.co/32x32/00AEEF/FFFFFF?text=ST">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        'background': '#1A1C20',
+                        'primary-text': '#FFFFFF',
+                        'secondary-text': '#8D8E91',
+                        'headings': '#D0D1D3',
+                        'primary-accent': '#00AEEF',
+                        'secondary-accent': '#1F4758',
+                        'borders': '#31343A',
+                        'section-light': '#1E2025',
+                        'section-dark': '#1A1C20',
+                    },
+                    boxShadow: {
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+                        'glow': '0 0 15px rgba(0, 174, 239, 0.5)',
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #1A1C20; 
+            color: #E6E6E6; 
+        }
+        
+        /* Page Loader Styles */
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1A1C20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .logo-container {
+            position: relative;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo-zoom {
+            animation: logoZoom 2s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes logoZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .tech-loader {
+            width: 100%;
+            height: 4px;
+            background: #31343A;
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .tech-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00AEEF, #1F4758);
+            animation: loadingProgress 2s ease-in-out infinite;
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; left: 0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0%; left: 100%; }
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00AEEF;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        .dot:nth-child(4) { animation-delay: 0.6s; }
+        .dot:nth-child(5) { animation-delay: 0.8s; }
+        .dot:nth-child(6) { animation-delay: 1.0s; }
+        .dot:nth-child(7) { animation-delay: 1.2s; }
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00AEEF;
+            display: inline-block;
+            animation: loadingDots 1.4s ease-in-out infinite both;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes loadingDots {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(145deg, #1A1C20, #22242A, #31343A);
+        }
+        
+        .accent-gradient {
+            background: linear-gradient(135deg, #1F4758, #00AEEF);
+        }
+        
+        .button-gradient {
+            background: linear-gradient(90deg, #00AEEF, #1F4758);
+        }
+        
+        /* Updated video container styles */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        #hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        /* Vertical tab text */
+        .vertical-text {
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .element-glow {
+            box-shadow: 0 0 10px 5px rgba(0, 174, 239, 0.3);
+        }
+     
+        [data-lucide] {
+            color: currentColor;
+        }
+
+        #service-detail-modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .partners-scroll {
+            animation: scroll 30s linear infinite;
+        }
+
+        .partners-container:hover .partners-scroll {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* Service card expansion animation */
+        .service-card {
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            width: 20%;
+            flex-shrink: 0;
+        }
+        
+        .service-card.expanded {
+            width: 80% !important;
+            z-index: 40;
+        }
+        
+        .service-card-content {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center;
+        }
+        
+        .service-card.expanded .service-card-content {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Enhanced hover animation for service cards */
+        .service-card:hover {
+            width: 45% !important;
+            z-index: 20;
+        }
+        
+        .service-card:hover .service-card-content {
+            opacity: 1;
+            transform: translateY(0) scale(1.1); /* Increased from 1.05 to 1.1 */
+            padding: 1.5rem; /* Added more padding on hover */
+        }
+        
+        .service-card:hover .vertical-text {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .service-card:hover .absolute.top-2.right-2 {
+            opacity: 0;
+        }
+        
+        .service-card:hover img {
+            opacity: 0.3;
+            transform: scale(1.1);
+        }
+        
+        .service-card:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 174, 239, 0.3), rgba(31, 71, 88, 0.3));
+            z-index: 1;
+        }
+        
+        .service-card img {
+            transition: all 0.5s ease;
+        }
+        
+        /* Ensure other cards shrink when one is hovered */
+        #vertical-tabs-container:hover .service-card:not(:hover) {
+            width: 15% !important;
+        }
+        
+        /* Tech typography animation */
+        .tech-text {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px rgba(0, 174, 239, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-text:hover {
+            transform: translateY(-5px);
+            text-shadow: 0 0 20px rgba(0, 174, 239, 0.8);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Card Expansion Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: #1A1C20;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid #31343A;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 174, 239, 0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            z-index: 10;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 174, 239, 0.4);
+        }
+        
+        .modal-body {
+            padding: 0;
+        }
+        
+        .expanding-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .modal-text-content {
+            padding: 30px;
+        }
+        
+        .service-card-dark {
+            border: 1px solid #31343A;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #22242A;
+        }
+        
+        .service-card-dark:hover {
+            box-shadow: 0 8px 25px rgba(0, 174, 239, 0.15);
+            transform: translateY(-2px);
+            border-color: #00AEEF;
+        }
+        
+        /* Horizontal card scrolling for mobile */
+        @media (max-width: 1023px) {
+            .horizontal-scroll-container {
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none; 
+            }
+            
+            .horizontal-scroll-container::-webkit-scrollbar {
+                display: none; 
+            }
+            
+            .horizontal-scroll-content {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 1.5rem;
+                padding-bottom: 1rem;
+            }
+            
+            .horizontal-card {
+                flex: 0 0 auto;
+                width: 320px;
+            }
+        }
+
+        /* Larger cards on desktop */
+        @media (min-width: 1024px) {
+            .horizontal-card {
+                width: 100%;
+            }
+        }
+        
+        #about {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #about .grid {
+            grid-template-columns: 1fr;
+        }
+        
+        #about .relative {
+            position: relative;
+            height: 100%;
+            min-height: 500px;
+        }
+        
+        #about .relative img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        #about .space-y-6 {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+        }
+        
+        /* Scroll animation styles */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-from-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-from-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-from-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-from-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Enhanced card styling */
+        .enhanced-card {
+            background: linear-gradient(145deg, #25272c, #1e2025);
+            border: 1px solid #3a3d44;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .enhanced-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 174, 239, 0.2);
+            transform: translateY(-5px);
+            border-color: #00AEEF;
+        }
+        
+        /* Enhanced modal styling */
+        .enhanced-modal {
+            max-width: 1000px;
+            width: 95%;
+        }
+        
+        .enhanced-modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        
+        .custom-select {
+            position: relative;
+        }
+        
+        .custom-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300AEEF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            transition: all 0.5s ease;
+        }
+        
+        .custom-select select:focus {
+            box-shadow: 0 0 0 2px rgba(0, 174, 239, 0.2);
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-text {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtext {
+                font-size: 1.25rem !important;
+            }
+            
+            .about-content {
+                padding: 1rem !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .enhanced-modal {
+                width: 98%;
+                margin: 1%;
+            }
+            
+            .enhanced-modal-image {
+                height: 200px;
+            }
+        }
+        
+        /* Section background colors */
+        .section-light {
+            background-color: #1E2025;
+        }
+        
+        .section-dark {
+            background-color: #1A1C20;
+        }
+        
+        /* About section background image */
+        .about-bg {
+            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .about-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 28, 32, 0.85);
+        }
+        
+        /* Video fallback styles */
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1F4758, #00AEEF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+        
+        /* Fixed video positioning */
+        .fixed-video {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Video overlay for better text readability */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="logo-container">
+                <div class="logo-zoom">
+                    <!-- Using a separate image for loader - different from main logo -->
+                    <img src="Singha Techne squre logo.jpg" 
+                         alt="Singha Techne Logo" 
+                         class="h-24 w-auto rounded-[10px] object-cover">
+                </div>
+            </div>
+            <div class="flex items-center justify-center mb-4">
+                <h2 class="text-3xl font-bold text-primary-accent mr-3">SINGHA TECHNE</h2>
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <p class="text-secondary-text mb-6">Enabling the Smart Society</p>
+            <div class="tech-loader">
+                <div class="tech-progress"></div>
+            </div>
+            <div class="loader-text">
+                <span class="dot">L</span>
+                <span class="dot">O</span>
+                <span class="dot">A</span>
+                <span class="dot">D</span>
+                <span class="dot">I</span>
+                <span class="dot">N</span>
+                <span class="dot">G</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed left-0 top-1/2 -translate-y-1/2 p-2 hidden lg:flex flex-col space-y-4 z-50 bg-black/30 rounded-r-lg">
+        <a href="#hero" class="p-2 rounded-full hover:bg-primary-accent transition group" aria-label="Home">
+            <i data-lucide="info" class="w-5 h-5 text-primary-accent group-hover:text-white"></i>
+        </a>
+        <a href="#about" class="p-2 rounded-full hover:bg-primary-accent transition group" aria-label="About Us">
+            <i data-lucide="briefcase" class="w-5 h-5 text-secondary-text group-hover:text-white"></i>
+        </a>
+        <a href="#products" class="p-2 rounded-full hover:bg-primary-accent transition group" aria-label="Products">
+            <i data-lucide="package" class="w-5 h-5 text-secondary-text group-hover:text-white"></i>
+        </a>
+        
+        <a href="#stats" class="p-2 rounded-full hover:bg-primary-accent transition group" aria-label="Statistics">
+            <i data-lucide="trending-up" class="w-5 h-5 text-secondary-text group-hover:text-white"></i>
+        </a>
+        
+        <a href="#partners" class="p-2 rounded-full hover:bg-primary-accent transition group" aria-label="Partners">
+            <i data-lucide="users" class="w-5 h-5 text-secondary-text group-hover:text-white"></i>
+        </a>
+    </div>
+
+    <header class="absolute top-0 left-0 right-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center text-sm font-medium">
+            <div class="flex items-center mb-4 md:mb-0">
+                    <img src="Singha Techne Side Logo1.png" alt="Singha Techne Logo" class="h-16 w-auto mr-3 rounded-[10px]">
+                </div>
+            
+            <!-- Centered Navigation -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#" class="home-link hover:text-primary-accent transition">HOME</a>
+                <a href="#about" class="hover:text-primary-accent transition">ABOUT</a>
+                <a href="#products" class="hover:text-primary-accent transition">PRODUCTS & SERVICES</a>
+                <a href="#contact" class="contact-nav-link hover:text-primary-accent transition">CONTACT</a>
+            </nav>
+            
+            <!-- Empty div to balance the layout -->
+            <div class="w-32"></div>
+            
+            <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-md hover:bg-white/10" aria-label="Toggle mobile menu">
+                <i data-lucide="menu" class="w-6 h-6 text-white"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-background/95 backdrop-blur-sm p-8 md:hidden">
+        <button id="mobile-menu-close" class="absolute top-4 right-4 p-2 rounded-md hover:bg-primary-accent transition" aria-label="Close mobile menu">
+            <i data-lucide="x" class="w-8 h-8 text-white"></i>
+        </button>
+        <nav class="flex flex-col space-y-6 text-xl pt-16 font-semibold">
+            <a href="#" class="home-link hover:text-primary-accent transition">HOME</a>
+            <a href="#about" class="hover:text-primary-accent transition">ABOUT</a>
+            <a href="#products" class="hover:text-primary-accent transition">PRODUCTS & SERVICES</a>
+            <a href="#contact" class="contact-nav-link hover:text-primary-accent transition">CONTACT</a>
+        </nav>
+    </div>
+
+    <main>
+        
+        <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden hero-gradient section-dark">
+            
+            <div class="video-container">
+                <!-- Local Video -->
+                <video id="hero-video" autoplay muted loop playsinline>
+                    <source src="SinghaTechneVid.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- Video overlay for better text readability -->
+                <div class="video-overlay"></div>
+    
+                <!-- Fallback background in case video fails -->
+                <div id="video-fallback" class="video-fallback hidden">
+                    <div class="text-center">
+                        <i data-lucide="play" class="w-16 h-16 mx-auto mb-4"></i>
+                        <p>Singha Techne - Enabling the Smart Society</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="container mx-auto px-4 py-24 relative z-20">
+                <h1 class="hero-text text-4xl md:text-6xl font-extrabold text-headings mb-4 max-w-4xl mx-auto tech-text floating">
+                    Empowering the Smart Society
+                </h1>
+                <h2 class="hero-subtext text-2xl md:text-4xl font-bold text-primary-accent mb-8 max-w-4xl mx-auto tech-text floating" style="animation-delay: 0.5s;">
+                    Build Your Dream Business
+                </h2>
+            </div>
+            
+            <!-- Service Cards -->
+            <div class="hidden lg:flex absolute top-0 right-0 h-full w-2/5 xl:w-1/4 z-30">
+                <div id="vertical-tabs-container" class="flex w-full h-full">
+                    
+                    <div data-tab-id="1" data-service="Website Design" class="service-card tab-item relative h-full flex items-center justify-center p-2 cursor-pointer transition-all duration-500 bg-white/5 active-tab element-glow">
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-accent/20 to-transparent opacity-70"></div>
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Website Design" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <span class="vertical-text text-lg font-bold tracking-widest text-white/80 z-10">W E B S I T E &nbsp; D E S I G N</span>
+                        <span class="absolute top-2 right-2 text-3xl font-bold text-white/50 z-10">1</span>
+                        
+                        <div class="service-card-content absolute inset-0 bg-background/95 p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-primary-accent mb-4">Website Design</h3>
+                            <p class="text-secondary-text mb-4">Custom, responsive websites that drive results</p>
+                            <button class="contact-button button-gradient text-white px-4 py-2 rounded-lg transition hover:scale-105">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div data-tab-id="2" data-service="Mobile App Development" class="service-card tab-item relative h-full flex items-center justify-center p-2 cursor-pointer transition-all duration-500 bg-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-accent/20 to-transparent opacity-70"></div>
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile App Development" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <span class="vertical-text text-lg font-bold tracking-widest text-secondary-text z-10">M O B I L E &nbsp; A P P</span>
+                        <span class="absolute top-2 right-2 text-3xl font-bold text-white/50 z-10">2</span>
+                        
+                        <div class="service-card-content absolute inset-0 bg-background/95 p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-primary-accent mb-4">Mobile App Development</h3>
+                            <p class="text-secondary-text mb-4">Native and cross-platform mobile applications</p>
+                            <button class="contact-button button-gradient text-white px-4 py-2 rounded-lg transition hover:scale-105">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div data-tab-id="3" data-service="Social Media Management" class="service-card tab-item relative h-full flex items-center justify-center p-2 cursor-pointer transition-all duration-500 bg-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-accent/20 to-transparent opacity-70"></div>
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Social Media Management" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <span class="vertical-text text-lg font-bold tracking-widest text-secondary-text z-10">S O C I A L &nbsp; M E D I A</span>
+                        <span class="absolute top-2 right-2 text-3xl font-bold text-white/50 z-10">3</span>
+                        
+                        <div class="service-card-content absolute inset-0 bg-background/95 p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-primary-accent mb-4">Social Media Management</h3>
+                            <p class="text-secondary-text mb-4">Boost your online presence and engagement</p>
+                            <button class="contact-button button-gradient text-white px-4 py-2 rounded-lg transition hover:scale-105">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div data-tab-id="4" data-service="IT Training" class="service-card tab-item relative h-full flex items-center justify-center p-2 cursor-pointer transition-all duration-500 bg-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-accent/20 to-transparent opacity-70"></div>
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="IT Training" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <span class="vertical-text text-lg font-bold tracking-widest text-secondary-text z-10">I T &nbsp; T R A I N I N G</span>
+                        <span class="absolute top-2 right-2 text-3xl font-bold text-white/50 z-10">4</span>
+                        
+                        <div class="service-card-content absolute inset-0 bg-background/95 p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-primary-accent mb-4">IT Training</h3>
+                            <p class="text-secondary-text mb-4">Professional development and skill enhancement</p>
+                            <button class="contact-button button-gradient text-white px-4 py-2 rounded-lg transition hover:scale-105">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div data-tab-id="5" data-service="Custom Software" class="service-card tab-item relative h-full flex items-center justify-center p-2 cursor-pointer transition-all duration-500 bg-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-accent/20 to-transparent opacity-70"></div>
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Custom Software" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <span class="vertical-text text-lg font-bold tracking-widest text-secondary-text z-10">C U S T O M &nbsp; S O F T W A R E</span>
+                        <span class="absolute top-2 right-2 text-3xl font-bold text-white/50 z-10">5</span>
+                        
+                        <div class="service-card-content absolute inset-0 bg-background/95 p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-primary-accent mb-4">Custom Software</h3>
+                            <p class="text-secondary-text mb-4">Tailored solutions for your unique needs</p>
+                            <button class="contact-button button-gradient text-white px-4 py-2 rounded-lg transition hover:scale-105">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 md:py-24 about-bg border-t border-borders">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left: Text Content -->
+                    <div class="about-content space-y-6 slide-from-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-headings">About Singha Techne</h2>
+                        
+                        <p class="text-secondary-text leading-relaxed">
+                            <span class="font-bold text-primary-accent">Singha Techne</span> is a leading Information and Communications Technology (ICT) systems provider. We operate systematically through our offices and networks globally to bring innovative services and solutions to our clients.
+                        </p>
+                        <p class="text-secondary-text leading-relaxed">
+                            We design, develop, deploy and provide software/ICT applications using a vast array of technologies. We respond to today's demanding challenges, providing a seamless flow of connectivity and information for modern businesses.
+                        </p>
+                    </div>
+                    
+                    <!-- Right: Stats -->
+                    <div class="stats-grid grid grid-cols-2 gap-6 slide-from-right">
+                        <div class="border-b border-borders pb-4">
+                            <span class="font-semibold text-primary-text flex items-center text-sm">
+                                <i data-lucide="rocket" class="w-5 h-5 mr-2 text-primary-accent"></i> PROJECTS
+                            </span>
+                            <span class="font-bold text-primary-accent text-3xl md:text-4xl count-up" data-target="4000">0</span><span class="font-bold text-primary-accent text-3xl md:text-4xl">+</span>
+                        </div>
+                        <div class="border-b border-borders pb-4">
+                            <span class="font-semibold text-primary-text flex items-center text-sm">
+                                <i data-lucide="user-check" class="w-5 h-5 mr-2 text-primary-accent"></i> CUSTOMERS
+                            </span>
+                            <span class="font-bold text-primary-accent text-3xl md:text-4xl count-up" data-target="2000">0</span><span class="font-bold text-primary-accent text-3xl md:text-4xl">+</span>
+                        </div>
+                        <div class="border-b border-borders pb-4">
+                            <span class="font-semibold text-primary-text flex items-center text-sm">
+                                <i data-lucide="users" class="w-5 h-5 mr-2 text-primary-accent"></i> EMPLOYEES
+                            </span>
+                            <span class="font-bold text-primary-accent text-3xl md:text-4xl count-up" data-target="30">0</span>
+                        </div>
+                        <div class="border-b border-borders pb-4">
+                            <span class="font-semibold text-primary-text flex items-center text-sm">
+                                <i data-lucide="flask-conical" class="w-5 h-5 mr-2 text-primary-accent"></i> RESEARCH LABS
+                            </span>
+                            <span class="font-bold text-primary-accent text-3xl md:text-4xl count-up" data-target="50">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="service-detail-modal" class="fixed inset-0 bg-background/80 z-50 p-10 lg:p-20 hidden backdrop-blur-sm">
+            <button id="close-service-modal" class="absolute top-6 right-6 p-3 rounded-full bg-primary-accent hover:bg-secondary-accent transition" aria-label="Close service details">
+                <i data-lucide="x" class="w-8 h-8 text-white"></i>
+            </button>
+            <div class="max-w-4xl mx-auto space-y-10">
+                <h2 id="modal-service-title" class="text-5xl font-extrabold text-primary-accent mb-4">Service Title Placeholder</h2>
+                <div id="modal-service-content" class="text-secondary-text text-lg space-y-6">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+                <button class="contact-button button-gradient text-white px-8 py-3 rounded-full font-semibold transition">
+                    Enquire Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Hero/Introduction Section: We Set Your Business Apart -->
+        <section class="py-16 md:py-24 section-dark border-t border-borders">
+            <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left: Illustration -->
+                <div class="flex justify-center lg:justify-start slide-from-left">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                        alt="Illustration of a team, one member leading on red stairs, symbolizing progress and leadership." 
+                        class="w-full h-auto rounded-lg shadow-xl">
+                </div>
+                
+                <!-- Right: Core Values and Description -->
+                <div class="slide-from-right">
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-10 leading-tight text-headings">
+                        We Set Your Business Apart
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Value 1: Development -->
+                        <div class="flex items-start space-x-4">
+                            <div class="p-2 rounded-full bg-primary-accent/20 text-primary-accent shadow-glow flex-shrink-0">
+                                <i data-lucide="code" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1 text-headings">Development</h4>
+                                <p class="text-secondary-text">
+                                    We infuse every experience with our in-depth product development services, seamlessly blending creativity and technology for an unparalleled user experience.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Value 2: Accountability -->
+                        <div class="flex items-start space-x-4">
+                            <div class="p-2 rounded-full bg-primary-accent/20 text-primary-accent shadow-glow flex-shrink-0">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1 text-headings">Accountability</h4>
+                                <p class="text-secondary-text">
+                                    We take ownership by meticulously delivering outcomes in all our practices and accountable actions, fostering a culture of reliability and transparency.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Value 3: Integrity -->
+                        <div class="flex items-start space-x-4">
+                            <div class="p-2 rounded-full bg-primary-accent/20 text-primary-accent shadow-glow flex-shrink-0">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1 text-headings">Integrity</h4>
+                                <p class="text-secondary-text">
+                                    Integrity is at the core of our values, guiding every decision and action to ensure honesty, transparency, and trustworthiness in all our operations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Feature Block Section - Individual Cards -->
+        <section class="py-16 section-light border-t border-borders">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center scroll-fade-in">
+                    
+                    <!-- EXPERIENCE Card -->
+                    <div class="service-card-dark enhanced-card p-6 rounded-xl shadow-card flex flex-col items-center space-y-3">
+                        <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                            <i data-lucide="star" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="uppercase text-xs tracking-widest text-primary-accent mb-2">Experience</h3>
+                        <p class="text-secondary-text leading-snug">
+                            Enhance your journey with us, creating experiences blended with innovative
+                            solutions to create memorable, user-centric interactions.
+                        </p>
+                    </div>
+                    
+                    <!-- STRATEGY Card -->
+                    <div class="service-card-dark enhanced-card p-6 rounded-xl shadow-card flex flex-col items-center space-y-3">
+                        <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                            <i data-lucide="target" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="uppercase text-xs tracking-widest text-primary-accent mb-2">Strategy</h3>
+                        <p class="text-secondary-text leading-snug">
+                            We excel in staffing strategies, helping companies to achieve
+                            customization that drive your success in a rapidly evolving landscape.
+                        </p>
+                    </div>
+                    
+                    <!-- SOCIAL Card -->
+                    <div class="service-card-dark enhanced-card p-6 rounded-xl shadow-card flex flex-col items-center space-y-3">
+                        <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="uppercase text-xs tracking-widest text-primary-accent mb-2">Social</h3>
+                        <p class="text-secondary-text leading-snug">
+                            Simplify your social impact with our solutions, fostering more tangible connections
+                            and promoting positive change in the digital realm.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Web Development & Hosting Section -->
+        <section id="products" class="py-16 md:py-24 section-dark border-t border-borders">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-headings">Our Comprehensive Solutions</h2>
+                <h3 class="text-2xl md:text-3xl font-bold text-primary-accent">Digital Services & Solutions</h3>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="container mx-auto px-4 max-w-8xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
+                    <!-- Left: Cards -taking 2/3 of the space -->
+                    <div class="lg:col-span-2 slide-from-left">
+                        <h2 class="text-3xl font-bold mb-6 text-primary-accent">Web Development & Hosting</h2>
+                        
+                        <!-- Horizontal Cards Container -->
+                        <div class="horizontal-scroll-container">
+                            <div class="horizontal-scroll-content lg:grid lg:grid-cols-3 lg:gap-6">
+                                <!-- Card 1: Web Development -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="web-development">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="monitor" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Web Development</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        We provide comprehensive and visually stunning web design services, from initial wireframes and graphics, and animations to enhancing your existing web design.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 2: Web & Domain Hosting -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="web-hosting">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="cloud" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Web & Domain Hosting</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Secure and reliable hosting solutions, providing fast servers, easy domain registration, and hassle-free, 24/7 technical support services.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 3: Digital Marketing -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="digital-marketing">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="zap" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Digital Marketing</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Maximize your online presence with strategic digital marketing services, enabling you to connect with your target audience and grow your brand with us.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Start Growing</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Image - taking 1/3 of the space -->
+                    <div class="flex justify-center lg:justify-end slide-from-right">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Web development illustration showing code and design elements" class="w-full h-auto rounded-lg shadow-xl">
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Marketing Solutions Section -->
+        <section class="py-16 md:py-24 section-light border-t border-borders">
+            <div class="container mx-auto px-4 max-w-8xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
+                    <!-- Left: Image - taking 1/3 of the space -->
+                    <div class="flex justify-center lg:justify-start slide-from-left">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Digital marketing illustration showing analytics and data visualization"  
+                            class="w-full h-auto rounded-lg shadow-xl">
+                    </div>
+                    
+                    <!-- Right: Cards - 2/3 of the space -->
+                    <div class="lg:col-span-2 slide-from-right">
+                        <h2 class="text-3xl font-bold mb-6 text-primary-accent">Our Marketing Solutions</h2>
+                        
+                        <!-- Horizontal Cards Container -->
+                        <div class="horizontal-scroll-container">
+                            <div class="horizontal-scroll-content lg:grid lg:grid-cols-3 lg:gap-6">
+                                <!-- Card 1: Content Creation -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="content-creation">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="edit-3" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Content Creation</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        We craft compelling content that resonates with your audience and drives engagement across all digital platforms.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 2: Videography -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="videography">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="video" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Videography</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Professional video production services that tell your brand story and captivate your audience with visual storytelling.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 3: Social Media Handling -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="social-media">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="share-2" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Social Media Handling</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Comprehensive social media management to build your brand presence and foster meaningful connections with your audience.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Digital Marketing Section -->
+        <section class="py-16 md:py-24 section-dark border-t border-borders">
+            <div class="container mx-auto px-4 max-w-8xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
+                    <!-- Left: Cards -taking 2/3 of the space -->
+                    <div class="lg:col-span-2 slide-from-left">
+                        <h2 class="text-3xl font-bold mb-6 text-primary-accent">Digital Marketing Services</h2>
+                        
+                        <!-- Horizontal Cards Container -->
+                        <div class="horizontal-scroll-container">
+                            <div class="horizontal-scroll-content lg:grid lg:grid-cols-3 lg:gap-6">
+                                <!-- Card 1: Email Marketing -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="email-marketing">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="mail" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Email Marketing</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Nurturing leads with personalized messages through automated and high-impact email campaigns.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 2: Paid Ads -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="paid-ads">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="megaphone" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Paid Ads</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Strategic paid advertising campaigns across multiple platforms to maximize your ROI and reach.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 3: Search Engine Optimization -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="seo">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="search" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Search Engine Optimization</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Drive organic traffic and improve search engine rankings with our comprehensive SEO strategies.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Image - taking 1/3 of the space -->
+                    <div class="flex justify-center lg:justify-end slide-from-right">
+                        <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Digital marketing illustration showing analytics and growth metrics" 
+                             class="w-full h-auto rounded-lg shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Development Services Section -->
+        <section class="py-16 md:py-24 section-light border-t border-borders">
+            <div class="container mx-auto px-4 max-w-8xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
+                    <!-- Left: Image - taking 1/3 of the space -->
+                    <div class="flex justify-center lg:justify-start slide-from-left">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Software development illustration showing code and programming" 
+                            class="w-full h-auto rounded-lg shadow-xl">
+                    </div>
+                    
+                    <!-- Right: Cards - taking 2/3 of the space -->
+                    <div class="lg:col-span-2 slide-from-right">
+                        <h2 class="text-3xl font-bold mb-6 text-primary-accent">Development Services</h2>
+                        
+                        <!-- Horizontal Cards Container -->
+                        <div class="horizontal-scroll-container">
+                            <div class="horizontal-scroll-content lg:grid lg:grid-cols-3 lg:gap-6">
+                                <!-- Card 1: Mobile App Development -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="mobile-app">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="smartphone" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Mobile App Development</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        We create intuitive and powerful mobile applications for iOS and Android platforms that deliver exceptional user experiences.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 2: Website Development -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="website-dev">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="globe" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Website Development</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Responsive, modern websites built with the latest technologies to ensure optimal performance and user engagement.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+
+                                <!-- Card 3: Custom Software -->
+                                <div class="service-card-dark enhanced-card p-5 rounded-xl shadow-card flex flex-col items-start space-y-3 horizontal-card expanding-card" data-card="custom-software">
+                                    <div class="p-3 rounded-full bg-primary-accent/20 text-primary-accent">
+                                        <i data-lucide="settings" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-headings">Custom Software</h4>
+                                    <p class="text-secondary-text text-sm flex-1">
+                                        Tailored software solutions designed to address your specific business needs and streamline your operations.
+                                    </p>
+                                    <a href="#" class="text-primary-accent text-sm font-semibold hover:underline">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="py-16 md:py-24 section-dark border-t border-borders">
+            <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="text-6xl font-extrabold text-primary-accent count-up-2" data-target="280">0</div>
+                        <div class="text-6xl font-extrabold text-primary-accent count-up-2" data-target="30">0</div>
+                        <div class="text-sm uppercase tracking-wider text-secondary-text">PROJECTS COMPLETED</div>
+                        <div class="text-sm uppercase tracking-wider text-secondary-text">MAJOR CLIENTS</div>
+                    </div>
+                    
+                    <p class="text-secondary-text text-sm leading-relaxed mb-6">
+                        We are dedicated to consistently giving our clients top-notch IT solutions that are tailored to their specific needs. Our expertise spans a wide range of fields, and we offer a comprehensive portfolio of services to help you achieve your goals.
+                    </p>
+                    <p class="text-secondary-text text-sm leading-relaxed">
+                        Always committed to providing excellent IT services.
+                    </p>
+                </div>
+
+                <div class="flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                          alt="Digital transformation illustration showing data visualization on multiple screens" 
+                          class="w-full max-w-lg h-auto rounded-lg shadow-2xl" 
+                          onerror="this.src='https://placehold.co/600x400/3B3B3B/F781A3?text=Digital+Transformation+Illustration'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section id="partners" class="py-16 md:py-24 section-light border-t border-borders">
+            <div class="container mx-auto px-4 text-center">
+                <h3 class="text-xl uppercase tracking-widest text-secondary-text mb-4">Strategic Technology Alliances</h3>
+                <h4 class="text-3xl font-bold text-headings mb-12">Our Global Technology Partners</h4>
+                
+                <div class="partners-container overflow-hidden relative">
+                    <div class="partners-scroll flex space-x-16">
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-primary-accent">CISCO</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-green-500">DELL</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-white">Symantec.</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-red-500">COMMVAULT</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-white">BARCO®</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-teal-400">hp</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-white">openteXt</div>
+                        <!-- Duplicate for seamless scrolling -->
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-primary-accent">CISCO</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-green-500">DELL</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-white">Symantec.</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-red-500">COMMVAULT</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-white">BARCO®</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-teal-400">hp</div>
+                        <div class="h-12 w-auto flex items-center text-2xl font-bold text-white">openteXt</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Card Expansion Modal -->
+    <div class="modal-overlay" id="cardModal">
+        <div class="modal-content enhanced-modal">
+            <div class="modal-close" id="modalClose">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <button id="open-whatsapp-modal" class="fixed right-6 bottom-6 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 transition shadow-lg z-50 flex items-center justify-center floating" aria-label="Contact us via WhatsApp">
+        <i data-lucide="message-circle" class="w-8 h-8 text-white fill-current"></i>
+    </button>
+    
+    <div id="whatsapp-modal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="bg-background p-8 rounded-xl shadow-3xl w-full max-w-md m-4 relative border border-primary-accent">
+            <button id="close-whatsapp-modal" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10" aria-label="Close form">
+                <i data-lucide="x" class="w-6 h-6 text-white"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-primary-accent mb-4 flex items-center">
+                <i data-lucide="message-circle" class="w-6 h-6 mr-2 fill-current"></i> Quick Enquiry
+            </h3>
+            <p class="text-secondary-text mb-6 text-sm">Fill in your details, and we'll redirect you to WhatsApp to start the chat.</p>
+            
+            <form id="whatsapp-enquiry-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1 text-primary-text">Your Name *</label>
+                    <input type="text" id="name" name="name" required class="w-full p-2 rounded-lg bg-background border border-borders focus:border-primary-accent focus:ring-primary-accent text-primary-text">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium mb-1 text-primary-text">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required class="w-full p-2 rounded-lg bg-background border border-borders focus:border-primary-accent focus:ring-primary-accent text-primary-text">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-1 text-primary-text">Email (Optional)</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 rounded-lg bg-background border border-borders focus:border-primary-accent focus:ring-primary-accent text-primary-text">
+                </div>
+                <div class="custom-select">
+                    <label for="service" class="block text-sm font-medium mb-1 text-primary-text">Service Interested In *</label>
+                    <select id="service" name="service" required class="w-full p-2 rounded-lg bg-background border border-borders focus:border-primary-accent focus:ring-primary-accent text-primary-text transition-all duration-500">
+                        <option value="">Select a service</option>
+                        <option value="Website Design">Website Design</option>
+                        <option value="Mobile App Development">Mobile App Development</option>
+                        <option value="Social Media Management">Social Media Management</option>
+                        <option value="IT Training">IT Training</option>
+                        <option value="Custom Software">Custom Software</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Web & Domain Hosting">Web & Domain Hosting</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                        <option value="Content Creation">Content Creation</option>
+                        <option value="Videography">Videography</option>
+                        <option value="Social Media Handling">Social Media Handling</option>
+                        <option value="Email Marketing">Email Marketing</option>
+                        <option value="Paid Ads">Paid Ads</option>
+                        <option value="Search Engine Optimization">Search Engine Optimization</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="enquiry" class="block text-sm font-medium mb-1 text-primary-text">Your Message *</label>
+                    <textarea id="enquiry" name="enquiry" rows="3" required class="w-full p-2 rounded-lg bg-background border border-borders focus:border-primary-accent focus:ring-primary-accent text-primary-text"></textarea>
+                </div>
+                <button type="submit" class="w-full button-gradient text-white font-semibold py-3 rounded-lg transition">
+                    Continue to WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <footer id="contact" class="bg-background text-primary-text py-16 border-t border-borders">
+        <div class="container mx-auto px-4">
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-sm">
+                
+                <div class="col-span-2 space-y-4">
+                    <h4 class="font-bold mb-4 text-headings">ABOUT</h4>
+                    <p class="text-secondary-text leading-relaxed">
+                        Singha Techne is a leading ICT provider committed to enabling the smart society with innovative products and solutions. We serve globally and locally.
+                    </p>
+                    
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 text-headings">PRODUCTS & SERVICES</h4>
+                    <ul class="space-y-2 text-secondary-text">
+                        <li><a href="#" class="hover:text-primary-accent transition">Website Design</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Mobile App Development</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Social Media Management</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">IT Training</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Custom Software</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Web Development</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Web & Domain Hosting</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Digital Marketing</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Content Creation</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Videography</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Email Marketing</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Paid Ads</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Search Engine Optimization</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 text-headings">R&D & INNOVATION</h4>
+                    <ul class="space-y-2 text-secondary-text">
+                        <li><a href="#" class="hover:text-primary-accent transition">Smart City</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Internet of Things (IoT)</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">RPA & AI</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Data Analytics</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition">Cyber Security</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-2">
+                    <h4 class="font-bold mb-4 text-headings">LOCATION: BHAKTAPUR OFFICE</h4>
+                    <address class="space-y-2 text-secondary-text not-italic">
+                        <p class="font-semibold text-primary-text">Singha Techne</p>
+                        <p>Kathmandu, Bhaktapur</p>
+                        <p>Duwakot-2, Nepal</p>
+                    </address>
+                    <div class="pt-4 space-y-1">
+                        <p class="text-secondary-text">
+                            <i data-lucide="mail" class="w-4 h-4 inline-block mr-2 text-primary-accent"></i>
+                            <a href="mailto:info@singhatechne.com" class="hover:text-primary-accent transition">info@singhatechne.com</a>
+                        </p>
+                        <p class="text-secondary-text">
+                            <i data-lucide="phone" class="w-4 h-4 inline-block mr-2 text-primary-accent"></i>
+                            <a href="tel:+9779708095535" class="hover:text-primary-accent transition">+977 970 80 95535</a>
+                        </p>
+                        <p class="text-secondary-text text-xs pt-2">Mon - Fri: 8:30 AM to 5:30 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-borders flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="Singha Techne Side Logo1.png" alt="Singha Techne Logo" class="h-16 w-auto mr-3 rounded-[10px]">
+                </div>
+                <div class="flex space-x-4 text-secondary-text">
+                    <a href="#" aria-label="Twitter"><i data-lucide="twitter" class="w-5 h-5 hover:text-primary-accent transition"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5 hover:text-primary-accent transition"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5 hover:text-primary-accent transition"></i></a>
+                    <a href="#" aria-label="YouTube"><i data-lucide="youtube" class="w-5 h-5 hover:text-primary-accent transition"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        
+        const pageLoader = document.getElementById('page-loader');
+
+        // Show loader immediately
+        pageLoader.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        // Hide loader after 2.5 seconds
+        setTimeout(() => {
+            pageLoader.style.opacity = '0';
+            pageLoader.style.visibility = 'hidden';
+            document.body.style.overflow = 'auto';
+            
+            // Remove loader from DOM after animation completes
+            setTimeout(() => {
+                pageLoader.style.display = 'none';
+            }, 800);
+        }, 2500);
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // --- Video Fix: Ensure video stays fixed and covers properly ---
+            const heroVideo = document.getElementById('hero-video');
+            
+            // Force video to cover the entire area without moving
+            if (heroVideo) {
+                heroVideo.style.position = 'absolute';
+                heroVideo.style.top = '0';
+                heroVideo.style.left = '0';
+                heroVideo.style.width = '100%';
+                heroVideo.style.height = '100%';
+                heroVideo.style.objectFit = 'cover';
+                heroVideo.style.objectPosition = 'center';
+                
+                // Ensure video plays correctly
+                heroVideo.play().catch(e => {
+                    console.log('Video autoplay prevented:', e);
+                    // Show fallback if video fails
+                    document.getElementById('video-fallback').classList.remove('hidden');
+                });
+            }
+
+            // --- 1. Mobile Menu Toggle Logic ---
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const menuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function toggleMobileMenu() {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                document.body.classList.toggle('overflow-hidden', !isHidden);
+                menuToggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+            }
+
+            menuToggle.addEventListener('click', toggleMobileMenu);
+            menuClose.addEventListener('click', toggleMobileMenu);
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // --- 2. Service Card Expansion Logic with Enhanced Hover Effects ---
+            const serviceCards = document.querySelectorAll('.service-card');
+            const verticalTabsContainer = document.getElementById('vertical-tabs-container');
+            const serviceModal = document.getElementById('service-detail-modal');
+            const serviceTitle = document.getElementById('modal-service-title');
+            const serviceContent = document.getElementById('modal-service-content');
+            const closeServiceModal = document.getElementById('close-service-modal');
+
+            // Sample Content for each service
+            const serviceDetails = {
+                'Website Design': {
+                    title: 'Bespoke Website Design & Development',
+                    content: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Website Design Process" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Our Process</h4>
+                                <p class="text-secondary-text mb-4">We create stunning, high-performance websites tailored to your brand identity and business objectives. Our designs are responsive, SEO-optimized, and built for conversion.</p>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-primary-text">
+                                    <li>Custom UX/UI Design</li>
+                                    <li>Full-Stack Development (React, Vue, Node)</li>
+                                    <li>CMS Integration (WordPress, Drupal, Custom)</li>
+                                    <li>E-commerce Solutions</li>
+                                    <li>SEO Optimization</li>
+                                    <li>Performance Optimization</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Website Design Results" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Results You Can Expect</h4>
+                                <p class="text-secondary-text mb-4">Our websites are designed to convert visitors into customers. We focus on user experience, loading speed, and mobile responsiveness to ensure your website performs at its best.</p>
+                                <div class="bg-secondary-accent/20 p-4 rounded-lg">
+                                    <p class="text-primary-accent font-semibold">Transform your digital presence with a website that truly performs.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                'Mobile App Development': {
+                    title: 'Cross-Platform Mobile Application Development',
+                    content: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile App Development" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Our Approach</h4>
+                                <p class="text-secondary-text mb-4">We build robust and intuitive mobile applications for both iOS and Android platforms. Focusing on user experience and speed, we deliver apps that keep your users engaged.</p>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-primary-text">
+                                    <li>Native and Hybrid App Development (Flutter, React Native)</li>
+                                    <li>Backend API Integration</li>
+                                    <li>App Store Optimization (ASO)</li>
+                                    <li>Continuous Maintenance and Support</li>
+                                    <li>Push Notification Implementation</li>
+                                    <li>Analytics Integration</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile App Testing" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Quality Assurance</h4>
+                                <p class="text-secondary-text mb-4">Every app we develop goes through rigorous testing on multiple devices and operating systems to ensure flawless performance and user satisfaction.</p>
+                                <div class="bg-secondary-accent/20 p-4 rounded-lg">
+                                    <p class="text-primary-accent font-semibold">Get your business into the hands of your customers, literally.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                'Social Media Management': {
+                    title: 'Strategic Social Media Management (SMM)',
+                    content: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Social Media Management" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Our Strategy</h4>
+                                <p class="text-secondary-text mb-4">Our SMM services cover everything from content strategy and creation to community management and performance analytics. We ensure your brand voice is heard where it matters most.</p>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-primary-text">
+                                    <li>Content Calendar Planning & Creation</li>
+                                    <li>Platform Management (Facebook, Instagram, LinkedIn)</li>
+                                    <li>Paid Advertising Campaigns</li>
+                                    <li>Audience Engagement & Growth Hacking</li>
+                                    <li>Influencer Marketing</li>
+                                    <li>Performance Analytics & Reporting</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Social Media Analytics" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Measurable Results</h4>
+                                <p class="text-secondary-text mb-4">We track key performance indicators to ensure your social media efforts are delivering tangible business results, from increased brand awareness to direct sales.</p>
+                                <div class="bg-secondary-accent/20 p-4 rounded-lg">
+                                    <p class="text-primary-accent font-semibold">Build a thriving online community and amplify your brand message.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                'IT Training': {
+                    title: 'Professional IT Training & Skill Development',
+                    content: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="IT Training" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Our Programs</h4>
+                                <p class="text-secondary-text mb-4">Empower your team with cutting-edge knowledge. We offer customized training programs in the latest technologies, security practices, and digital tools.</p>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-primary-text">
+                                    <li>Cyber Security Awareness</li>
+                                    <li>Cloud Computing Fundamentals (AWS, Azure)</li>
+                                    <li>Data Analytics & Business Intelligence</li>
+                                    <li>Software Development Methodologies (Agile, DevOps)</li>
+                                    <li>Digital Marketing Strategies</li>
+                                    <li>Project Management Certification</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="IT Training Workshop" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Training Methodology</h4>
+                                <p class="text-secondary-text mb-4">Our training combines theoretical knowledge with practical exercises, ensuring participants can immediately apply what they've learned in their work environment.</p>
+                                <div class="bg-secondary-accent/20 p-4 rounded-lg">
+                                    <p class="text-primary-accent font-semibold">Invest in your people, drive innovation from within.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                'Custom Software': {
+                    title: 'Tailored Custom Software Solutions',
+                    content: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Custom Software Development" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Our Solutions</h4>
+                                <p class="text-secondary-text mb-4">When off-the-shelf solutions don't fit, we design and build scalable, enterprise-grade software from the ground up to automate your unique business processes.</p>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-primary-text">
+                                    <li>Enterprise Resource Planning (ERP) Systems</li>
+                                    <li>Customer Relationship Management (CRM)</li>
+                                    <li>Data Migration and Integration</li>
+                                    <li>Legacy System Modernization</li>
+                                    <li>Business Process Automation</li>
+                                    <li>Custom Dashboard and Reporting Tools</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Custom Software Implementation" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h4 class="text-xl font-bold text-headings mb-2">Implementation Process</h4>
+                                <p class="text-secondary-text mb-4">We follow an agile development methodology with regular client check-ins to ensure the final product perfectly matches your requirements and expectations.</p>
+                                <div class="bg-secondary-accent/20 p-4 rounded-lg">
+                                    <p class="text-primary-accent font-semibold">Solve your most complex challenges with precision-engineered software.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+
+            // FIXED: Service card expansion logic
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceName = this.getAttribute('data-service');
+                    const details = serviceDetails[serviceName];
+                    
+                    // Check if the clicked card is already expanded
+                    const isAlreadyExpanded = this.classList.contains('expanded');
+                    
+                    // Collapse all cards first
+                    serviceCards.forEach(c => {
+                        c.classList.remove('expanded');
+                        c.querySelector('.vertical-text').classList.add('text-secondary-text');
+                        c.querySelector('.vertical-text').classList.remove('text-white/80');
+                    });
+                    
+                    // If the card wasn't already expanded, expand it
+                    if (!isAlreadyExpanded) {
+                        this.classList.add('expanded');
+                        this.querySelector('.vertical-text').classList.remove('text-secondary-text');
+                        this.querySelector('.vertical-text').classList.add('text-white/80');
+                        
+                        // Populate and display the modal after a delay
+                        setTimeout(() => {
+                            serviceTitle.textContent = details.title;
+                            serviceContent.innerHTML = details.content;
+                            serviceModal.classList.remove('hidden');
+                            document.body.classList.add('overflow-hidden');
+                        }, 800);
+                    } else {
+                        // If the card was already expanded, just close the modal
+                        serviceModal.classList.add('hidden');
+                        document.body.classList.remove('overflow-hidden');
+                    }
+                });
+            });
+
+            closeServiceModal.addEventListener('click', () => {
+                serviceModal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+                
+                // Collapse all cards
+                serviceCards.forEach(card => {
+                    card.classList.remove('expanded');
+                });
+            });
+
+            // --- 3. Animated Stats Logic ---
+            const counters = document.querySelectorAll('.count-up, .count-up-2');
+            
+            const animateCount = (el) => {
+                const target = parseInt(el.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const start = 0;
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const percentage = Math.min(progress / duration, 1);
+                    const value = Math.floor(percentage * target);
+
+                    // Add a "+" if it's one of the "plus" stats (e.g., 4000+)
+                    el.textContent = value;
+
+                    if (percentage < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+
+                window.requestAnimationFrame(step);
+            };
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 // Trigger when 50% of the element is visible
+            };
+
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        animateCount(entry.target);
+                        entry.target.classList.add('animated'); // Prevent re-triggering
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+
+            // --- 4. WhatsApp Form Functionality ---
+            const whatsappButton = document.getElementById('open-whatsapp-modal');
+            const whatsappModal = document.getElementById('whatsapp-modal');
+            const closeWhatsappModal = document.getElementById('close-whatsapp-modal');
+            const whatsappForm = document.getElementById('whatsapp-enquiry-form');
+
+            whatsappButton.addEventListener('click', () => {
+                whatsappModal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            });
+
+            closeWhatsappModal.addEventListener('click', () => {
+                whatsappModal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            });
+
+            whatsappForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value || 'Not provided';
+                const service = document.getElementById('service').value;
+                const enquiry = document.getElementById('enquiry').value;
+                const phoneNumber = '+9779708095535';
+
+                // Construct the pre-filled message
+                const message = `Hello Singha Techne, my name is ${name}. I am making an enquiry regarding a service.\n\nDetails:\n- Phone: ${phone}\n- Email: ${email}\n- Service: ${service}\n- Message: ${enquiry}`;
+                
+                // Encode the message and build the WhatsApp URL
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=${encodeURIComponent(phoneNumber)}&text=${encodeURIComponent(message)}`;
+
+                // Redirect the user
+                window.open(whatsappUrl, '_blank');
+
+                // Optional: Close the modal and reset the form
+                whatsappModal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+                whatsappForm.reset();
+            });
+
+            // --- 5. Card Expansion Modal Logic ---
+            const modalOverlay = document.getElementById('cardModal');
+            const modalBody = document.getElementById('modalBody');
+            const modalClose = document.getElementById('modalClose');
+            
+            // Card content data with images
+            const cardContent = {
+                'web-development': {
+                    title: 'Web Development',
+                    icon: 'monitor',
+                    image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'We provide comprehensive and visually stunning web design services, from initial wireframes and graphics, and animations to enhancing your existing web design.',
+                    details: [
+                        'Custom website design and development',
+                        'Responsive design for all devices',
+                        'E-commerce solutions',
+                        'Content management systems',
+                        'Performance optimization',
+                        'Ongoing maintenance and support'
+                    ],
+                    color: 'primary-accent'
+                },
+                'web-hosting': {
+                    title: 'Web & Domain Hosting',
+                    icon: 'cloud',
+                    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Secure and reliable hosting solutions, providing fast servers, easy domain registration, and hassle-free, 24/7 technical support services.',
+                    details: [
+                        'Fast and secure hosting servers',
+                        'Easy domain registration and management',
+                        '24/7 technical support',
+                        'SSL certificates and security',
+                        'Automatic backups',
+                        'Scalable hosting plans'
+                    ],
+                    color: 'primary-accent'
+                },
+                'digital-marketing': {
+                    title: 'Digital Marketing',
+                    icon: 'zap',
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Maximize your online presence with strategic digital marketing services, enabling you to connect with your target audience and grow your brand with us.',
+                    details: [
+                        'Strategic marketing planning',
+                        'Social media marketing',
+                        'Content marketing',
+                        'Email marketing campaigns',
+                        'Analytics and reporting',
+                        'Conversion optimization'
+                    ],
+                    color: 'primary-accent'
+                },
+                'content-creation': {
+                    title: 'Content Creation',
+                    icon: 'edit-3',
+                    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'We craft compelling content that resonates with your audience and drives engagement across all digital platforms.',
+                    details: [
+                        'Blog posts and articles',
+                        'Social media content',
+                        'Infographics and visuals',
+                        'Brand storytelling',
+                        'Content strategy development',
+                        'Content calendar management'
+                    ],
+                    color: 'primary-accent'
+                },
+                'videography': {
+                    title: 'Videography',
+                    icon: 'video',
+                    image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Professional video production services that tell your brand story and captivate your audience with visual storytelling.',
+                    details: [
+                        'Corporate video production',
+                        'Product demonstration videos',
+                        'Social media video content',
+                        'Animation and motion graphics',
+                        'Video editing and post-production',
+                        'Video marketing strategy'
+                    ],
+                    color: 'primary-accent'
+                },
+                'social-media': {
+                    title: 'Social Media Handling',
+                    icon: 'share-2',
+                    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Comprehensive social media management to build your brand presence and foster meaningful connections with your audience.',
+                    details: [
+                        'Social media strategy development',
+                        'Content creation and scheduling',
+                        'Community management',
+                        'Social media advertising',
+                        'Performance analytics',
+                        'Brand reputation management'
+                    ],
+                    color: 'primary-accent'
+                },
+                'email-marketing': {
+                    title: 'Email Marketing',
+                    icon: 'mail',
+                    image: 'https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Nurturing leads with personalized messages through automated and high-impact email campaigns.',
+                    details: [
+                        'Email campaign strategy',
+                        'List segmentation and management',
+                        'Automated email sequences',
+                        'A/B testing and optimization',
+                        'Performance tracking',
+                        'Newsletter creation'
+                    ],
+                    color: 'primary-accent'
+                },
+                'paid-ads': {
+                    title: 'Paid Ads',
+                    icon: 'megaphone',
+                    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Strategic paid advertising campaigns across multiple platforms to maximize your ROI and reach.',
+                    details: [
+                        'Google Ads management',
+                        'Social media advertising',
+                        'Display and banner ads',
+                        'Retargeting campaigns',
+                        'Ad copy and creative development',
+                        'Campaign performance analysis'
+                    ],
+                    color: 'primary-accent'
+                },
+                'seo': {
+                    title: 'Search Engine Optimization',
+                    icon: 'search',
+                    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Drive organic traffic and improve search engine rankings with our comprehensive SEO strategies.',
+                    details: [
+                        'Keyword research and analysis',
+                        'On-page optimization',
+                        'Technical SEO audits',
+                        'Link building strategies',
+                        'Local SEO optimization',
+                        'SEO performance reporting'
+                    ],
+                    color: 'primary-accent'
+                },
+                'mobile-app': {
+                    title: 'Mobile App Development',
+                    icon: 'smartphone',
+                    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'We create intuitive and powerful mobile applications for iOS and Android platforms that deliver exceptional user experiences.',
+                    details: [
+                        'Native iOS and Android development',
+                        'Cross-platform app development',
+                        'UI/UX design for mobile',
+                        'App testing and quality assurance',
+                        'App store submission',
+                        'Post-launch support and updates'
+                    ],
+                    color: 'primary-accent'
+                },
+                'website-dev': {
+                    title: 'Website Development',
+                    icon: 'globe',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Responsive, modern websites built with the latest technologies to ensure optimal performance and user engagement.',
+                    details: [
+                        'Custom website development',
+                        'Front-end and back-end development',
+                        'Database integration',
+                        'API development and integration',
+                        'Performance optimization',
+                        'Security implementation'
+                    ],
+                    color: 'primary-accent'
+                },
+                'custom-software': {
+                    title: 'Custom Software',
+                    icon: 'settings',
+                    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    description: 'Tailored software solutions designed to address your specific business needs and streamline your operations.',
+                    details: [
+                        'Business process automation',
+                        'Custom CRM and ERP solutions',
+                        'Workflow management systems',
+                        'Data analytics and reporting tools',
+                        'Integration with existing systems',
+                        'Ongoing maintenance and updates'
+                    ],
+                    color: 'primary-accent'
+                }
+            };
+            
+            // Function to open modal with card content
+            function openCardModal(cardId) {
+                const content = cardContent[cardId];
+                if (!content) return;
+                
+                const colorClass = 'text-primary-accent';
+                const bgColorClass = 'bg-primary-accent/20';
+                
+                modalBody.innerHTML = `
+                    <img src="${content.image}" alt="${content.title}" class="enhanced-modal-image">
+                    <div class="modal-text-content">
+                        <div class="flex items-center mb-6">
+                            <div class="p-3 rounded-full ${bgColorClass} ${colorClass} mr-4">
+                                <i data-lucide="${content.icon}" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold ${colorClass}">${content.title}</h3>
+                        </div>
+                        <p class="text-secondary-text mb-6 text-lg">${content.description}</p>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold mb-4 text-headings">What We Offer:</h4>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                ${content.details.map(detail => `<li class="flex items-start">
+                                    <i data-lucide="check" class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-primary-text">${detail}</span>
+                                </li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center pt-6 border-t border-borders">
+                            <p class="text-secondary-text">Ready to get started with our ${content.title} services?</p>
+                            <button class="contact-button-modal bg-primary-accent text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-accent/90 transition">
+                                Contact Us
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Re-initialize icons in the modal
+                lucide.createIcons();
+                
+                // Add event listener to the modal contact button
+                const modalContactButton = document.querySelector('.contact-button-modal');
+                if (modalContactButton) {
+                    modalContactButton.addEventListener('click', () => {
+                        closeCardModal();
+                        whatsappModal.classList.remove('hidden');
+                        document.body.classList.add('overflow-hidden');
+                    });
+                }
+                
+                // Show modal with animation
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Function to close modal
+            function closeCardModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Add click event to all expanding cards
+            document.querySelectorAll('.expanding-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't trigger if clicking on the "Learn More" link
+                    if (e.target.tagName === 'A') return;
+                    
+                    const cardId = card.getAttribute('data-card');
+                    openCardModal(cardId);
+                });
+            });
+            
+            // Close modal when clicking close button or overlay
+            modalClose.addEventListener('click', closeCardModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeCardModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeCardModal();
+                }
+            });
+            
+            // Scroll animation function
+            function handleScrollAnimations() {
+                const fadeElements = document.querySelectorAll('.scroll-fade-in');
+                const slideLeftElements = document.querySelectorAll('.slide-from-left');
+                const slideRightElements = document.querySelectorAll('.slide-from-right');
+                
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, observerOptions);
+                
+                fadeElements.forEach(el => observer.observe(el));
+                slideLeftElements.forEach(el => observer.observe(el));
+                slideRightElements.forEach(el => observer.observe(el));
+            }
+            
+            // Initialize scroll animations
+            handleScrollAnimations();
+            
+            // Contact button functionality
+            document.querySelectorAll('.contact-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    whatsappModal.classList.remove('hidden');
+                    document.body.classList.add('overflow-hidden');
+                });
+            });
+            
+            // Home link functionality - scroll to top
+            document.querySelectorAll('.home-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Contact nav link functionality - open WhatsApp modal
+            document.querySelectorAll('.contact-nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    whatsappModal.classList.remove('hidden');
+                    document.body.classList.add('overflow-hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
